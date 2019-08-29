@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="When developing Android clients, many a time I will be running local servers on my machine. Sometimes, I also need to run the client on a physical Android device.  Suppose the local server is running">
+<meta name="keywords" content="android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Developing on a physical Android client with a local server">
+<meta property="og:url" content="https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/index.html">
+<meta property="og:site_name" content="Mike Kamau&#39;s Blog">
+<meta property="og:description" content="When developing Android clients, many a time I will be running local servers on my machine. Sometimes, I also need to run the client on a physical Android device.  Suppose the local server is running">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-29T18:40:13.001Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Developing on a physical Android client with a local server">
+<meta name="twitter:description" content="When developing Android clients, many a time I will be running local servers on my machine. Sometimes, I also need to run the client on a physical Android device.  Suppose the local server is running">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Developing on a physical Android client with a local server</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/michaelkamau">Projects</a></li>
+         
+          <li><a href="/books/">Books</a></li>
+        
+      </ul>
+    </span>
+    <br>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&text=Developing on a physical Android client with a local server"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&is_video=false&description=Developing on a physical Android client with a local server"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Developing on a physical Android client with a local server&body=Check out this article: https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&name=Developing on a physical Android client with a local server&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">1.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Developing on a physical Android client with a local server
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Mike Kamau's Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-29T17:21:37.000Z" itemprop="datePublished">2019-08-29</time>
+        
+        (Updated: <time datetime="2019-08-29T18:40:13.001Z" itemprop="dateModified">2019-08-29</time>)
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/android/">android</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>When developing Android clients, many a time I will be running local servers on my machine. Sometimes, I also need to run the client on a physical Android device. </p>
+<p>Suppose the local server is running on <code>localhost:8085</code>. To access this on an Android emulator is straightforward since that address maps to <code>http://10.0.2.2:8085</code>. However, for a physical device, using <code>10.0.2.2</code> will not necessarily work. </p>
+<p>To get it to work, the approach I use to first connect both my development machine and phone to the same network, usually Wifi. I then check the IP address of my machine by running the <code>ifconfig</code> command to list all active network interfaces. Normally, the correct address will be under the <code>en0</code> interface. You can of course check for the IP address under Network setting of the operating system. If say the IP address is <code>192.168.0.37</code>, then using it on the physical Android device will work.</p>
+<p>This is not convenient since I have to keep checking and changing the IP addresses every time I change networks. </p>
+<p>A better approach is to create a build variant that will automatically get the development machine’s IP address and expose it to the physical Android device.</p>
+<p>To do that, in the <code>build.gradle</code> file, I add a helper function to get the IP address of the development machine within my local network as:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> getLocalIp() &#123;</span><br><span class="line">    <span class="keyword">new</span> Socket().withCloseable &#123; socket -&gt;</span><br><span class="line">        socket.connect(<span class="keyword">new</span> InetSocketAddress(<span class="string">"google.com"</span>, <span class="number">80</span>))</span><br><span class="line">        <span class="keyword">return</span> socket.getLocalAddress().toString().substring(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>This function makes a socket connect to google.com. From the socket object, I retrieve my machine’s local address. Calling <code>socket.getLocalAddress().toString()</code> will return the address like <code>/192.168.0.37</code>, so if need be, you can strip the leading <code>/</code>.</p>
+<p>If you have a build variant for use with physical Android devices, simply call the function <code>getLocalIp()</code> at the point where you need your machine’s IP.<br>This will always work even when you switch networks for as long as both your development machine and physical Android phone are connected to the same network.</p>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>In summary, my <code>build.gradle</code> file will typically look like this:</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">apply <span class="string">plugin:</span> <span class="string">'com.android.application'</span></span><br><span class="line"></span><br><span class="line">android &#123;</span><br><span class="line">    <span class="comment">// buildToolsVersion: </span></span><br><span class="line">    buildTypes &#123;</span><br><span class="line"><span class="symbol">        release:</span> &#123; <span class="comment">// details &#125;</span></span><br><span class="line"><span class="symbol">        debug:</span> &#123;<span class="comment">// details&#125;</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    productFlavors&#123;</span><br><span class="line">        emulator &#123;</span><br><span class="line">            buildConfigField(<span class="string">"String"</span>, <span class="string">"BASE_URL"</span>, <span class="string">'"http://10.0.2.2:8085"'</span>)</span><br><span class="line">            <span class="comment">// other build fields</span></span><br><span class="line">        &#125;</span><br><span class="line">        physicalDevice &#123;</span><br><span class="line">            buildConfigField(<span class="string">"String"</span>, <span class="string">"BASE_URL"</span>, <span class="string">'\"http://'</span> + getLocalIp() + <span class="string">':8085"'</span>)</span><br><span class="line">            <span class="comment">// other build fields</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// other variants</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> getLocalIp() &#123;</span><br><span class="line">    <span class="keyword">new</span> Socket().withCloseable &#123; socket -&gt;</span><br><span class="line">        socket.connect(<span class="keyword">new</span> InetSocketAddress(<span class="string">"google.com"</span>, <span class="number">80</span>))</span><br><span class="line">        <span class="keyword">return</span> socket.getLocalAddress().toString().substring(<span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/michaelkamau">Projects</a></li>
+         
+          <li><a href="/books/">Books</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Conclusion"><span class="toc-number">1.</span> <span class="toc-text">Conclusion</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&text=Developing on a physical Android client with a local server"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&is_video=false&description=Developing on a physical Android client with a local server"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Developing on a physical Android client with a local server&body=Check out this article: https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&title=Developing on a physical Android client with a local server"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=https://michaelkamau.gihub.io/2019/08/29/Using-a-locally-Running-Server-with-an-Android-Client/&name=Developing on a physical Android client with a local server&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Mike Kamau
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="http://github.com/michaelkamau">Projects</a></li>
+         
+          <li><a href="/books/">Books</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
